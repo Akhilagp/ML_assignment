@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-pima= pd.read_csv('pima-id.csv',header=None)
+pima= pd.read_csv('dataset/pima-id.csv',header=None)
 pima=np.array(pima)
 print "shape",pima.shape
 pima[np.where(pima[:,0]>8),0] = 8

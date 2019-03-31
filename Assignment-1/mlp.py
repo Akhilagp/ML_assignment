@@ -20,16 +20,16 @@ class mlp:
         self.nout = np.shape(targets)[1]
         self.ndata = np.shape(inputs)[0]
         self.nhidden = nhidden
-
+	print inputs.shape,targets.shape
         self.beta = beta
         self.momentum = momentum
         self.outtype = outtype
     
         # Initialise network
         self.weights1 = (np.random.rand(self.nin+1,self.nhidden)-0.5)*2/np.sqrt(self.nin)
-	#print "Initial Weights1 Chosen: ",self.nin+1 ,"*", self.nhidden,"\n",self.weights1
+	print "Initial Weights1 Chosen: ",self.nin+1 ,"*", self.nhidden,"\n",self.weights1
         self.weights2 = (np.random.rand(self.nhidden+1,self.nout)-0.5)*2/np.sqrt(self.nhidden)
-	#print "Initial Weights2 Chosen: ", self.nhidden+1 ,"*" ,self.nout,"\n",self.weights2
+	print "Initial Weights2 Chosen: ", self.nhidden+1 ,"*" ,self.nout,"\n",self.weights2
     def earlystopping(self,inputs,targets,valid,validtargets,eta,niterations=100):
     
         valid = np.concatenate((valid,-np.ones((np.shape(valid)[0],1))),axis=1)
@@ -64,8 +64,8 @@ class mlp:
             self.outputs = self.mlpfwd(inputs)
 
             error = 0.5*np.sum((self.outputs-targets)**2)
-            if (np.mod(n,100)==0):
-               print "Iteration: ",n, " Error: ",error    
+            #if (np.mod(n,100)==0):
+               #print "Iteration: ",n, " Error: ",error    
 
             # Different types of output neurons
             if self.outtype == 'linear':
